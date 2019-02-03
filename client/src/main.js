@@ -20,7 +20,7 @@ Vue.config.productionTip = false
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'http://localhost:8080'
+  connection: process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : window.location.hostname
 }))
 
 /* eslint-disable no-new */
