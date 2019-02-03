@@ -90,6 +90,15 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+
+    hello: function (data) {
+      console.log(data.msg)
+    }
   }
 }
 </script>
