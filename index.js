@@ -3,6 +3,11 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
+const initialData = {
+  money: 50.,
+  potions: 10
+};
+
 app.use( express.static('client/dist') );
 
 app.get('*', function (req, res) {
@@ -12,7 +17,7 @@ app.get('*', function (req, res) {
 io.on('connection', function(socket){
   console.log('a user connected');
 
-  socket.emit('hello', { msg: 'Hello' });
+  socket.emit('initialData', initialData);
 });
 
-http.listen(process.env.PORT || 8080);
+http.listen(process.env.PORT || 3000);

@@ -1,29 +1,52 @@
 <template>
   <div class="main">
-    <Logo />
+    <b-row class="mt-5">
+      <b-col class="text-center">
+        <Logo />
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-5">
+      <b-col md="1">
+      </b-col>
+
+      <b-col md="2">
+        <Money />
+      </b-col>
+
+      <b-col md="2">
+      </b-col>
+
+      <b-col md="2">
+        <Revenue />
+      </b-col>
+
+      <b-col md="2">
+      </b-col>
+
+      <b-col md="2">
+        <Potions />
+      </b-col>
+
+      <b-col md="1">
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
 import Logo from './Logo.vue'
+import Money from './Money.vue'
+import Potions from './Potions.vue'
+import Revenue from './Revenue.vue'
 
 export default {
   name: 'MainComponent',
   components: {
-    Logo
-  },
-  sockets: {
-    connect: function () {
-      console.log('socket connected')
-    },
-
-    hello: function (data) {
-      console.log(data.msg)
-    }
+    Logo,
+    Money,
+    Potions,
+    Revenue
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
