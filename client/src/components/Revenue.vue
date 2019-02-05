@@ -1,8 +1,8 @@
 <template>
   <b-card>
-    <p class="card-text text-center">
+    <h3 class="card-text text-center">
       <font-awesome-icon icon="funnel-dollar" /> {{ revenue }}
-    </p>
+    </h3>
   </b-card>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'revenue',
   computed: {
     revenue () {
-      return (this.$store.state.potions / 10.0).toFixed(2)
+      return (this.$store.state.potions / this.$store.state.potionsToMoney).toFixed(2)
     }
   }
 }

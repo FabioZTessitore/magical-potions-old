@@ -29,7 +29,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     money: 0,
-    potions: 0
+    potions: 0,
+    potionsToMoney: 10.0
   },
   mutations: {
     setInitialData (state, data) {
@@ -41,6 +42,9 @@ const store = new Vuex.Store({
     },
     incrementPotions (state) {
       state.potions++
+    },
+    updateMoney (state) {
+      state.money += state.potions / state.potionsToMoney
     }
   }
 })
@@ -57,6 +61,20 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
+  data: function () {
+    return {
+      timer: ''
+    }
+  },
+  created: function () {
+    const self = this
+    this.timer = setInterval(function () {
+      self.$store.commit('updateMoney')
+    }, 1000)
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
+  },
   sockets: {
     connect: function () {
       console.log('socket connection ...')

@@ -1,8 +1,8 @@
 <template>
   <b-card @click="makeMoney">
-    <p class="card-text text-center">
+    <h3 class="card-text text-center">
       <font-awesome-icon icon="hand-holding-usd" /> {{ money }}
-    </p>
+    </h3>
   </b-card>
 </template>
 

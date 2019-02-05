@@ -1,8 +1,8 @@
 <template>
   <b-card @click="makePotions">
-    <p class="card-text text-center">
+    <h3 class="card-text text-center">
       <font-awesome-icon icon="wine-bottle" /> {{ potions }}
-    </p>
+    </h3>
   </b-card>
 </template>
 
