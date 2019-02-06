@@ -10,21 +10,21 @@
       <b-col md="1">
       </b-col>
 
-      <b-col md="2">
+      <b-col md="2" class="my-3">
         <Money />
       </b-col>
 
       <b-col md="2">
       </b-col>
 
-      <b-col md="2">
+      <b-col md="2" class="my-3">
         <Revenue />
       </b-col>
 
       <b-col md="2">
       </b-col>
 
-      <b-col md="2">
+      <b-col md="2" class="my-3">
         <Potions />
       </b-col>
 
