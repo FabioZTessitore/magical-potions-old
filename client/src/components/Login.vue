@@ -5,6 +5,7 @@
         <Logo />
       </b-col>
     </b-row>
+
     <b-row>
       <b-col class="text-center">
         <router-link to="/home">(Go to Home)</router-link>
