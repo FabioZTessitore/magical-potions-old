@@ -11,8 +11,14 @@ const initialData = {
   potions: 10
 };
 
-const configDB = require('./config/database.js');
 mongoose.Promise = require('bluebird');
+
+try {
+  const configDB = require('./config/database.js');
+} catch(e) {
+  const configDB = { url: process.env.MONGOLAB_URI };
+}
+
 mongoose.connect(configDB.url, { useNewUrlParser: true }, function (err) {
   if (err) {
     console.log(err);
