@@ -18,8 +18,9 @@ let configDB;
 try {
   configDB = require('./config/database.js');
 } catch(e) {
-  configDB = { url: process.env.MONGOLAB_URI };
+  configDB = { url: process.env.MONGODB_URI };
 }
+
 
 mongoose.connect(configDB.url, { useNewUrlParser: true }, function (err) {
   if (err) {
