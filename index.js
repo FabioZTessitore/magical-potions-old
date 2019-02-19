@@ -13,10 +13,12 @@ const initialData = {
 
 mongoose.Promise = require('bluebird');
 
+let configDB;
+
 try {
-  const configDB = require('./config/database.js');
+  configDB = require('./config/database.js');
 } catch(e) {
-  const configDB = { url: process.env.MONGOLAB_URI };
+  configDB = { url: process.env.MONGOLAB_URI };
 }
 
 mongoose.connect(configDB.url, { useNewUrlParser: true }, function (err) {
