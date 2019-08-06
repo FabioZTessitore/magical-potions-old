@@ -50,7 +50,7 @@ const store = new Vuex.Store({
 })
 
 Vue.use(new VueSocketIO({
-  debug: false,
+  debug: true,
   connection: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : window.location.hostname
 }))
 
@@ -77,11 +77,13 @@ new Vue({
   },
   sockets: {
     connect: function () {
+      // this.$socket.emit('authentication', {u: 'u', p: 'p'})
       console.log('socket connection ...')
-    },
+    }
 
+    /*
     initialData: function (data) {
       this.$store.commit('setInitialData', data)
-    }
+    } */
   }
 })

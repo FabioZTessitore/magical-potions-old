@@ -2,14 +2,14 @@
   <div>
     <b-form @submit="onSubmit" v-if="show">
       <b-form-group
-                    label="Email address:"
-                    label-for="useremail"
-                    description="We'll never share your email with anyone else.">
-        <b-form-input id="useremail"
-                      type="email"
-                      v-model="form.email"
+                    label="Username:"
+                    label-for="username"
+                    description="">
+        <b-form-input id="username"
+                      type="text"
+                      v-model="form.username"
                       required
-                      placeholder="Enter email">
+                      placeholder="Enter username">
         </b-form-input>
       </b-form-group>
       <b-form-group
@@ -42,7 +42,13 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      alert(JSON.stringify(this.form))
+      // alert(JSON.stringify(this.form))
+      this.$socket.emit('authentication', this.form)
+    }
+  },
+  sockets: {
+    authenticated () {
+      console.log('ok, we\'re in')
     }
   }
 }

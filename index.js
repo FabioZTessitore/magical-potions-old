@@ -6,6 +6,36 @@ const mongoose = require('mongoose');
 
 const User = require('./app/models/user');
 
+function authenticate(socket, data, callback) {
+  var username = data.username;
+  var password = data.password;
+
+  User.findOne({ 'local.username': username }, function (err, user) {
+    if (err || !user) return callback(new Error("User not found"));
+    return callback(null, user.validPassword(password));
+  });
+}
+
+function postAuthenticate(socket, data) {
+  /*var username = data.username;
+
+  db.findUser('User', {username:username}, function(err, user) {
+    socket.client.user = user;
+  });*/
+ console.log('postAuthenticate()');
+}
+
+function disconnect(socket) {
+  console.log(socket.id + ' disconnected');
+}
+
+require('socketio-auth')(io, {
+  authenticate: authenticate,
+  postAuthenticate: postAuthenticate,
+  disconnect: disconnect,
+  timeout: 30000  // 30 sec
+});
+
 const initialData = {
   money: 50.,
   potions: 10
@@ -20,7 +50,6 @@ try {
 } catch(e) {
   configDB = { url: process.env.MONGODB_URI };
 }
-
 
 mongoose.connect(configDB.url, { useNewUrlParser: true }, function (err) {
   if (err) {
@@ -37,6 +66,8 @@ app.use( express.static('client/dist') );
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/client/dist/index.html');
 });
+
+
 
 io.on('connection', function(socket){
   console.log('a user connected');
@@ -65,7 +96,7 @@ io.on('connection', function(socket){
       newUser.local.email = data.email;
       newUser.local.username = data.username;
       newUser.local.password = newUser.generateHash(data.password);
-      newUser.role = 'user';
+      newUser.createdAt = new Date();
 
       newUser.save(function(err) {
         if (err) throw err;
